@@ -3,7 +3,7 @@ author: "fastcall"
 title: "SDCTF 2024 food-without-salt game rev challenge writeup"
 date: "2024-05-12"
 description: "top tier trolling inside"
-summary: "A writup for the Godot game reverse engineering challenge in SDCTF 2024."
+summary: "A writeup for the Godot game reverse engineering challenge in SDCTF 2024."
 tags: ["re", "ctf", "game"]
 categories: ["writeups"]
 ShowToc: true
@@ -39,14 +39,14 @@ I returned on Sunday with a refreshed mind but no new plan. After a lot more con
 
 Was this just some huge coincidence? Some dumb luck? Of course not.
 
-Someone playing the CTF has reported the issue as [a bug](https://github.com/char-ptr/gdke/issues/12) to the maintainer, and he had fixed and pushed a new release during the CTF, of course without the knowledge that it was an **active ctf challenge.**
+Someone playing the CTF had reported the issue as [a bug](https://github.com/char-ptr/gdke/issues/12) to the maintainer. The issue was then fixed and pushed via a new release during the CTF, of course without the knowledge that it was an **active ctf challenge**.
 ![screenshot of github](/sdctf-github.png)
 
-The person who reported the bug attempted to hide the fact that this was the ctf challenge binary by renaming it. But due to the very poor redaction you can easily spot the encryption key for the challenge in the screenshot.
+The person who reported the bug attempted to hide the fact that this was the ctf challenge binary by renaming the file. Howerver, due to the very poor redaction you can easily spot the encryption key for the challenge in the screenshot.
 
 ## Solution
 
-After obtaining the encryption key, we can enter it into gdsdecomp to extract and recover the entire Godot project in it's entirety.
+After obtaining the encryption key, we can enter it into gdsdecomp to extract and recover the Godot project in it's entirety.
 ![screenshot of gdsdecomp](/sdctf-setting-key.png)
 ![screenshot of gdsdecomp extraction](/sdctf-extracting.png)
 After extraction, we open up the project with the correct version of Godot Editor, which you can find in the metadata of the binary, or by just looking in the gdsdecomp logs, which will tell you what version of Godot was used.
