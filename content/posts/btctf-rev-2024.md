@@ -14,6 +14,8 @@ Teammates:
 - `SuperBeetleGamer`: crypto, foren
 - `fastcall (me!)`: rev, foren
 
+## Solution
+
 We came first place at BTCTF 2024 and as requested, this is my writeup for the golang2 rev challenge.
 
 The original binary for this challenge was a stripped MACH-O mac binary. 
@@ -131,3 +133,36 @@ btctf{f0und_th3_g0ph3r_h0le}
 
 We get the flag! Why doesn't this have more solves...
 `btctf{f0und_th3_g0ph3r_h0le}`
+
+## Post-mortem
+
+So turns out, after I downloaded the binary but before other people did, organizers swapped the binary with one that is unsolvable. 
+
+Thanks to lolmenow for the following timeline:
+
+**TIMELINE OF GOLANG2** Episode 1: Disaster strikes upon BTCTF
+
+**[05/25/2024 11pm EST]** A new challenge titled *golang2* was released after all the pwn challenges went down.
+
+**[05/25/2024 12:28am EST]** JP, an organizer, compiled the binary incorrectly. A new linux version was swapped.  
+
+
+**[05/25/24 12:30am EST]** fastcall downloads the binary and starts reversing.
+
+**[UNKNOWN TIME] Somehow, the binary was silently swapped. The time and date is still unknown.**
+
+**[05/25/24 12:42am EST]** A team titled ".;,;. But Canadian" was the first team to solve the challenge, specifically fastcall.
+
+**[05/25/24 10:00:41 IST]** Somehow, the binary was swapped twice! With a user Abhi having a different file then everyone else had.
+
+
+**[05/25-05/26]** Chaos ensues as no other team is able to solve it.
+
+**[05/26/2024 4:30pm]** CTF ends and fastcall publishes the writeup for the challenge.
+
+**[05/26/2024 4:23pm]** fastcall realizes that the binary was swapped and notifies everyone. He then uploads the correct binary.
+
+**[05/26/2024 4:30pm]** Everyone who attempted to solve this problem realizes the error.
+
+**[05/26/2024-PRESENT]** Everyone complains about the challenge. Nothing can be done.
+
