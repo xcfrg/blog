@@ -142,7 +142,7 @@ Thanks to lolmenow for the following timeline:
 
 **TIMELINE OF GOLANG2** Episode 1: Disaster strikes upon BTCTF
 
-**[05/25/2024 11pm EST]** A new challenge titled *golang2* was released after all the pwn challenges went down.
+**[05/24/2024 11pm EST]** A new challenge titled *golang2* was released after all the pwn challenges went down.
 
 **[05/25/2024 12:28am EST]** JP, an organizer, compiled the binary incorrectly. A new linux version was swapped.  
 
@@ -158,7 +158,7 @@ Thanks to lolmenow for the following timeline:
 
 **[05/25-05/26]** Chaos ensues as no other team is able to solve it.
 
-**[05/26/2024 4:30pm]** CTF ends and fastcall publishes the writeup for the challenge.
+**[05/26/2024 4:00pm]** CTF ends and fastcall publishes the writeup for the challenge.
 
 **[05/26/2024 4:23pm]** fastcall realizes that the binary was swapped and notifies everyone. He then uploads the correct binary.
 
