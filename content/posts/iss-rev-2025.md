@@ -197,7 +197,7 @@ if (*local_20 == '\0') {
 // { ... }
 ```
 
-Looking around in the main function for a bit, we see a `readline` call, followed by a call to a user create function called `chk` (check?). This is a complicated function, however what is does it a nutshell is hash the input provided by the user (by calling digest from the `nimcrypto` library, and then enter one of two comparison checks.
+Looking around in the main function for a bit, we see a `readline` call, followed by a call to a user create function called `chk` (check?). This is a complicated function, however what is does in a nutshell is hash the input provided by the user (by calling digest from the `nimcrypto` library, and then enter one of two comparison checks.
 
 Before fully reversing this function, let's see what happens when we inverse these checks. 
 
@@ -649,7 +649,7 @@ public static byte[] dbs(byte[] d, byte hx)
 We can grab the resource from dnSpy, and decrypt it with a 1 byte XOR using Cyberchef. Unlike all the other Windows executables in this CTF, we actually get a MSVC PE binary! 
 
 After decompiling with IDA, we find nothing interesting in the main function. Armed with the experience from solving `Sneaky`, and the fact that this challenge is from the same author, it's time to search for unused functions. We do indeed find another function in the `.rodata` section. This function seems to assemble a large amount of stack strings, but IDA has helpfully inlined them all for us.
-![ida picture](ida_2.png)
+![ida picture](/ida_2.png)
 
 Before I actually start trying to crack hashes, let's do a quick sanity check. The challenge description constantly mentions `MySQL`, so let's look up the password hash on [CrackStation](https://crackstation.net/). We get lucky, and there's a hit! `MySQL:D@rkn3$$`
 
