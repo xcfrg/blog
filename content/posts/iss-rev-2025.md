@@ -203,7 +203,7 @@ Before fully reversing this function, let's see what happens when we inverse the
 
 ![x64dbg picture](/x64dbg_3.png)
 We place a breakpoint in x64dbg at the first of these checks, inverse the [ZF flag](https://en.wikipedia.org/wiki/Zero_flag), so the `jne` instruction will jump to the other branch, and we find that the flag is printed out, with no flag format. `Your requested resource is: {S3COND_S7RIKE}`
-## Evasive (broken, 2 solves)
+## Evasive (2 solves, broken)
 
 > The Black Hat Bureau has developed a new tool to guard their secrets with ruthless precision. It has been code named Evasive due to its highly volatile behavior. We want you to uncover the secret it hides.
 
@@ -282,7 +282,7 @@ We see a checksum being generated and used as a constraint on the input. The fir
 
 But after looking at this function and at the flag carefully, we notice a *huge problem*, the constraints are not well defined enough to find a single ASCII solution. Our checksum is only 4 bytes long (size of an int), and [our flag is much longer than that](https://en.wikipedia.org/wiki/Pigeonhole_principle). **There are hundreds of thousands of valid ASCII flags that pass this checksum and are considered a valid check by the program.**
 
-However, this challenge, while broken, we still solved. How? Guessing.
+However, this challenge, while broken, was still solved. How? Guessing.
 
 `bhbureauCTF{?S3cr#tUnv3"l3dx-}`
 Looking at the corrupted flag, we can guess some of the more obvious corrupted characters. We can replace the `#` with a `3`, and the `"` with a `1`. We also need to guess that the character set is `[a-zA-Z0-9\-]`, as there will still be many valid ASCII solutions.
@@ -505,7 +505,7 @@ To my knowledge, the flag is not decrypted any further than this, so it's time t
 ![dcode.fr](/dcodefr_cipher_guessing_1.png)
 
 The cipher is identified as base62, and we can also use dcode to decode it. We get `Cookie_FOR_your_hardWork`, our fourth flag with no flag format!
-## Phantom Protocol (broken, 0 solves)
+## Phantom Protocol (0 solves, broken)
 
 > The Black Hat Bureau seems to have found another target in a commonly used developer application, MySQL DB. We have had to suspend all our database server operations, we believe the bureau has planned something big this time and whatever it is, its very dangerous for us. We want you to analyse the application and see if anyone breached any of our user accounts over at [https://issessionsctf-secure-login.chals.io](https://issessionsctf-secure-login.chals.io)
 
