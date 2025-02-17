@@ -19,7 +19,7 @@ UofTCTF Members:
 
 **NOTE: Once again, all code in writeup has been beautified manually for your reading pleasure. It may not represent the exact disassembly, but it does represent the semantics of the code.**
 
-# SIMPLE DIMPLE (19 solves)
+## SIMPLE DIMPLE (19 solves)
 
 >this is a very simple dimple challenge
 
@@ -46,7 +46,7 @@ int main(int argc, const char **argv, const char **envp)
 }```
 
 The flag is visible in plaintext. `bhbureau{$+R!nGz}`
-# Starlight's Nightmare (13 solves)
+## Starlight's Nightmare (13 solves)
 
 >**He likes.. Cool cats..** *Phantom Maze, Tackle this short-but-twisted reverse engineering puzzle. A secret hidden, protected Uncover the correct password, decrypt the hidden key, and call the victory function to reveal the final flag. Good luck.*
 
@@ -109,7 +109,7 @@ int win()
 }
 ```
 
-# Eleet (6 solves)
+## Eleet (6 solves)
 
 > Agent we found this program "Eleet" on one our local computers, our analysis has determined it to be harmless but it seems one of your colleagues likes to play pranks. Your task is to figure out what they have hidden in the binary for you.
 
@@ -133,7 +133,7 @@ void decrypt_flag(char *out_flag)
 
 We find that the flag is sitting directly in the executable, behind a 1 byte XOR. IDA doesn't have the best UX when it comes to copying bytes out of it's views (select the bytes you want, Edit -> Export Data and copy it out of the preview box), and [hexcopy](https://github.com/OALabs/hexcopy-ida) by [OALabs](https://www.openanalysis.net/), is a great way to turn it into a single click experience. I used CyberChef to do the decryption. `bhbureauCTF{Exploited_Backdoor}`
 
-# tseuqer (5 solves)
+## tseuqer (5 solves)
 
 > We have reason to believe the bureaus agents have poined our File Integrity Checker, tseuqer. This has been serious breach due to the software being very popular with our staff. We want you to find the leak and remedy is as soon as possible.
 
@@ -170,7 +170,7 @@ void* main_thread(void *ptr)
 
 After decoding the base64 string, we get the URL, `https://iscessionsctf-qwertyxzqwertty.chals.io/`. The challenge author made a typo when creating the challenge, and so we guess the correct URL `https://issessionsctf-qwertyxzqwertty.chals.io/`. Visiting this URL in a browser gives us the flag (emulating the cURL request will not help as it specifically does not get the body). `bhbureauCTF{H4ck3r_H34rtb34t_St0pp3d}` 
 
-# Launch Codes (2 solves)
+## Launch Codes (2 solves)
 
 > Operative, we have gotten our hands on a top secret application which is rumoured to contain an active launch code for one of the cold war era ICBMs. Intelligence suggests that the program verifies an ID related to historic military technology, but all further details are classified. We would like you to recover the active code from this application before the bureau gets their hands on it.
 
@@ -202,7 +202,7 @@ Before fully reversing this function, let's see what happens when we inverse the
 
 ![x64dbg picture](/x64dbg_3.png)
 We place a breakpoint in x64dbg at the first of these checks, inverse the [ZF flag](https://en.wikipedia.org/wiki/Zero_flag), so the `jne` instruction will jump to the other branch, and we find that the flag is printed out, with no flag format. `Your requested resource is: {S3COND_S7RIKE}`
-# Evasive (broken, 2 solves)
+## Evasive (broken, 2 solves)
 
 > The Black Hat Bureau has developed a new tool to guard their secrets with ruthless precision. It has been code named Evasive due to its highly volatile behavior. We want you to uncover the secret it hides.
 
@@ -332,7 +332,7 @@ while s.check() == z3.sat:
 ```
 
 `bhbureauCTF{InS3cr3tUnv31l3dx-}`
-# Piece of the Pie (1 solve)
+## Piece of the Pie (1 solve)
 
 > Operative, this seemingly plain looking calculator program is believed to be hiding a critical piece of information which can severely damage our field operations. Find the hidden piece and report back ASAP.
 
@@ -436,7 +436,7 @@ I switched to `x64dbg` to see what the reassembled string was in memory without 
 ![x64dbg picture](/x64dbg_1.png)
 We can see the base64 string in memory, [decoding and reversing](https://gchq.github.io/CyberChef/#recipe=From_Base64('A-Za-z0-9%2B/%3D',true,true)Reverse('Byte')&input=RGVQSGVYMGRlWEp2YlROTlgyNHpaR1JKU0E9PQ&oeol=CR) it gives us the flag without the flag format, again... `bhbureauCTF{HIdd3n_M3mory}`
 
-# Sneaky (1 solve)
+## Sneaky (1 solve)
 
 > Operative, we have recieved a suspicious executable, it seems to be erratic in behaviour. We have reason to belive one of our undercover agents embedded critical information in it. Analyse the behavior and retrieve the information. Good Luck!
 
@@ -504,7 +504,7 @@ To my knowledge, the flag is not decrypted any further than this, so it's time t
 ![dcode.fr](dcodefr_cipher_guessing_1.png)
 
 The cipher is identified as base62, and we can also use dcode to decode it. We get `Cookie_FOR_your_hardWork`, our fourth flag with no flag format!
-# Phantom Protocol (broken, 0 solves)
+## Phantom Protocol (broken, 0 solves)
 
 > The Black Hat Bureau seems to have found another target in a commonly used developer application, MySQL DB. We have had to suspend all our database server operations, we believe the bureau has planned something big this time and whatever it is, its very dangerous for us. We want you to analyse the application and see if anyone breached any of our user accounts over at [https://issessionsctf-secure-login.chals.io](https://issessionsctf-secure-login.chals.io)
 
@@ -622,7 +622,7 @@ We can now put breakpoints on `CreateProcessW`, and `WriteProcessMemory` , attac
 ![x64dbg picture](/x64dbg_2.png)
 But nothing happens! It turns out that there are multiple mistakes with how process hollowing is implemented, and this challenge is ***completely broken*** if you want to solve it dynamically :/
 
-## Static Approach
+### Static Approach
 
 After the CTF, I attempted to solve this challenge statically.
 
