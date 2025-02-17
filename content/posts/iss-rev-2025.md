@@ -197,7 +197,7 @@ if (*local_20 == '\0') {
 // { ... }
 ```
 
-Looking around in the main function for a bit, we see a `readline` call, followed by a call to a user create function called `chk` (check?). This is a complicated function, however what is does in a nutshell is hash the input provided by the user (by calling digest from the `nimcrypto` library, and then enter one of two comparison checks.
+Looking around in the main function for a bit, we see a `readline` call, followed by a call to a user created function called `chk` (check?). This is a complicated function, however what is does in a nutshell is hash the input provided by the user (by calling digest from the `nimcrypto` library, and then enter one of two comparison checks.
 
 Before fully reversing this function, let's see what happens when we inverse these checks. 
 
