@@ -43,7 +43,8 @@ int main(int argc, const char **argv, const char **envp)
   else
     puts("Access Denied!");
   return 0;
-}```
+}
+```
 
 The flag is visible in plaintext. `bhbureau{$+R!nGz}`
 ## Starlight's Nightmare (13 solves)
