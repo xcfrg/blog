@@ -214,7 +214,9 @@ int64_t sub_79B0(int64_t handle, int auth_type, const char *array_1, const char 
 }
 ```
 
-This function is even longer, but the second parameter `auth_type` is the immediate value `2`, and the code will branch based on this parameter. We can ignore every other branch in this function. After googling these strings and [learning about the smtp protocol](https://mailtrap.io/blog/smtp-commands-and-responses/), I realized that this function is choosing the authentication method to the SMTP server, and this binary will always use `AUTH PLAIN`. In this mode, the username and password are concatenated together, then encoded in base64 and then sent to the server. Encoding `sender@example.comThisIsNotTheFlag` in base64, gives us `c2VuZGVyQGV4YW1wbGUuY29tVGhpc0lzTm90VGhlRmxhZw`, and I tried to pass this to the smtp server through my netcat connection.
+This function is even longer, but the second parameter `auth_type` is the immediate value `2`, and the code will branch based on this parameter. We can ignore every other branch in this function. After googling these strings and [learning about the smtp protocol](https://mailtrap.io/blog/smtp-commands-and-responses/), I realized that this function is choosing the authentication method to the SMTP server, and this binary will always use `AUTH PLAIN`. 
+
+In this mode, the username and password are concatenated together, then encoded in base64 and then sent to the server. Encoding `sender@example.comThisIsNotTheFlag` in base64, gives us `c2VuZGVyQGV4YW1wbGUuY29tVGhpc0lzTm90VGhlRmxhZw`, and I tried to pass this to the smtp server through my netcat connection.
 
 ```
 $ nc mxexfil.secard.ca 4545
@@ -243,7 +245,7 @@ if ( sub_555555557090(handle, "DATA\r\n", 6uLL))
 	return *(handle + 128);
 ```
 
-The challenge clicked in my head once I saw what was happening here. The client was sending an email to server, to which the body of the email will contain out flag! I wanted to continue reversing the binary and re-implement the SMTP commands, but after playing around with the server some more, I ran into a problem:
+The challenge clicked in my head once I saw what was happening here. The client was sending an email to server, to which the server will likely respond with the flag. I wanted to continue reversing the binary and re-implement the SMTP commands, but after playing around with the server some more, I ran into a problem:
 
 ```
 $ nc mxexfil.secard.ca 4545
