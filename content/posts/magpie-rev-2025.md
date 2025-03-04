@@ -283,7 +283,7 @@ Looking at the function prototype for `SSL_read` on it's man page, we see that t
 [heap]:00005555555651A3 db ' PLAIN LOGIN',0Dh,0Ah,0
 ```
 
-Watching this register as we continue past hits on this breakpoint, and we can watch the encrypted traffic being received by our client. (only interesting parts show, actual traffic is much longer)
+Watching this register as we continue past hits on this breakpoint, and we can watch the encrypted traffic being received by our client. (I'm showing the traffic truncated, the actual traffic is much longer)
 
 ```
 db '250 New message started',0Dh,0Ah
