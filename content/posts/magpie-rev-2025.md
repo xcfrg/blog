@@ -25,13 +25,13 @@ UofTCTF Members:
 
 We are given a single binary, `notavirus`. Loading the binary into the [industry standard disassembler](https://hex-rays.com/ida-pro) and decompiling it, after the many string mutations, we see a warning for the `ptr` variable that's passed to many functions along with emails and other strings.
 
-![undefined value](undefined_value.png)
+![undefined value](/undefined_value.png)
 
 There can be many reasons for this, but one of the most common I've seen is the decompiler getting confused at the calling convention or number of arguments passed to a function, mostly due to IDA's decompilation being lazy by default, in contrast to other tools. (this means that functions are only decompiled in IDA when you click into them)
 
 A easy fix is to use the `Create C file` feature (`File -> Produce file -> Create C file)`, to force IDA to decompile every function in the binary in order to generate the file. After doing this and refreshing the decompilation, we find that the warning disappears and the functions now have the correct arguments, great!
 
-![defined value](defined_value.png)
+![defined value](/defined_value.png)
 
 Back to the start of the main function, we see many string manipulations that seem to create two char arrays passed to a mystery function.
 
@@ -137,7 +137,7 @@ int64_t sub_27C0()
 
 We can just create the directory and file `~/<username>/Documents/flag.txt` to pass this check and proceed. (the file cannot be empty)
 
-![ida breakpoint](ida-breakpoint-1.png)
+![ida breakpoint](/ida-breakpoint-1.png)
 
 After placing a breakpoint on the function, we see the two arrays passed contain base64 encoded data:
 ```
@@ -267,7 +267,7 @@ Once again in the interest of speed, I thought of a much easier way to solve thi
 
 Since this is a socket connection, I immediately looked for cross references to `recv` when I remembered that the smtp connection was encrypted with TLS. I realized that OpenSSL was being used to do the TLS after seeing `SSL_read` called after `recv`, and realized I could place a breakpoint after `SSL_read` to see what encrypted data was received!
 
-![ida breakpoint 2](ida-break-point-2.png)
+![ida breakpoint 2](/ida-break-point-2.png)
 
 Looking at the function prototype for `SSL_read` on it's man page, we see that the written buffer is in the 2nd argument (the `r12` register). `int SSL_read(SSL *ssl, void *buf, int num);`. 
 
